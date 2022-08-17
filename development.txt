@@ -153,6 +153,22 @@ Due to a link:https://bugs.openwrt.org/index.php?do=details&task_id=3441[known b
 In order to have additional packages, the easiest way is to select them in menuconfig. More packages can be installed afterwards via +opkg+, but some of these require a specific kernel configuration to be in place. This can be achieved following link:development-kernel_vermagic.html[these additional instructions dealing with kernel vermagic]. Beware that this will increase noticeably the time and storage space required for the compilation.
 =========================
 
+
+[NOTE]
+=========================
+If you are using a device based on the QCA9880-BR1A radio (such as archer c5 v1) you need to modify the driver to non-Candelatech, Candelatech does not  support mesh protocols:
+
+**Deselect** problematic drivers:
+  - Firmware -> ath10k-firmware-qca988x-ct
+  - Kernel Modules -> Wireless Drivers -> kmod-ath10k-ct
+
+**Select** the right drivers:
+  - Firmware -> ath10k-firmware-qca988x
+  - Kernel Modules -> Wireless Drivers -> kmod-ath10k
+
+=========================
+
+
 Save and exit.
 
 .Finally, compile the images
